@@ -1,3 +1,9 @@
+/*
+Names:
+Purpose: Header file for Graph.cpp
+*/
+
+
 #ifndef GRAPH_H
 #define GRAPH_H
 
@@ -5,6 +11,8 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <algorithm>
+#include <list>
 using namespace std;
 
 class Edge {
