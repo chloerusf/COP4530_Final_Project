@@ -28,18 +28,22 @@ void Graph::addVertex(std::string label){
 
 void Graph::removeVertex(std::string label){
 
-    //Find label to remove, return if not found
+    // Find label to remove, return if not found
     unordered_map<string, Vertex*>::iterator it = vertices.find(label);
     if (it == vertices.end()) return;
 
-    for(unordered_map<string, Vertex*>::iterator p = vertices.begin(); p != vertices.end(); p++){
-        vector<Edge> &edges = p->second->edges;
+    for (unordered_map<string, Vertex*>::iterator p = vertices.begin(); p != vertices.end(); p++) {
+    vector<Edge> &edges = p->second->edges;
 
-        for(int i = 0; i < edges.size();i++){
-            edges.erase(edges.begin()+i);
-            i--;
+    for (int i = 0; i < edges.size(); i++) {
+
+        // Only erase edges that point to the vertex being removed
+        if (edges[i].destLabel == label) {
+            edges.erase(edges.begin() + i);
+            i--;  
         }
     }
+}
 
     delete it->second;
     vertices.erase(it);
