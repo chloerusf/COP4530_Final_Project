@@ -40,8 +40,30 @@ void Graph::removeVertex(std::string label){
     vertices.erase(it);
 }
 
+//this function adds a bi-directional edge to two labels
 void Graph::addEdge(std::string label1, std::string label2, unsigned long weight){
-
+    //edge case that makes sure label 1 and label 2 don't loop back to itself
+    if(label1 == label2) return;
+    
+    //Make sure the vertex actually exist
+    unordered_map<string, Vertex*>::iterator iterator1 = vertices.find(label1);
+    unordered_map<string, Vertex*>::iterator iterator2 = vertices.find(label2);
+    //Or condition, if one vertice was not found then return
+    if (iterator1 == vertices.end() || iterator2 == vertices.end()){
+        return;
+    }
+    //point to the objects
+    Vertex* vert1 = iterator1->second;
+    Vertex* vert2 = iterator2->second;
+    
+    //edge case that checks the vertices for duplicate edges
+    for(size_t i = 0; i < vert1->edges.size(); i++){
+        if(vert1->edges[i].destLabel == label2){
+            return;} //if edge already exists
+    }
+    //add an edge in both direction (so they both know each other)
+    vert1->edges.push_back(Edge(label2, weight));
+    vert2->edges.push_back(Edge(label1, weight));
 }
 
 void Graph::removeEdge(std::string label1, std::string label2){
