@@ -36,6 +36,10 @@ class Graph: public GraphBase {
 private: 
     unordered_map<string, Vertex*> vertices;
 
+    // Prevents accidental copying
+    Graph(const Graph&) = delete;
+    Graph& operator=(const Graph&) = delete;
+
 public:
     Graph();
     ~Graph();
