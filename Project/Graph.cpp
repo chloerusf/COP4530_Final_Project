@@ -32,9 +32,11 @@ void Graph::removeVertex(std::string label){
     unordered_map<string, Vertex*>::iterator it = vertices.find(label);
     if (it == vertices.end()) return;
 
+    // Loop through all vertices and remove edges pointing to the one being deleted.
     for (unordered_map<string, Vertex*>::iterator p = vertices.begin(); p != vertices.end(); p++) {
     vector<Edge> &edges = p->second->edges;
-
+    
+    // Remove edges that point to the vertex being deleted.
     for (int i = 0; i < edges.size(); i++) {
 
         // Only erase edges that point to the vertex being removed
@@ -44,7 +46,6 @@ void Graph::removeVertex(std::string label){
         }
     }
 }
-
     delete it->second;
     vertices.erase(it);
 }
