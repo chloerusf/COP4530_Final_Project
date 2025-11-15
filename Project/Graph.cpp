@@ -18,7 +18,7 @@ void Graph::addVertex(std::string label){
     if(vertices.find(label) != vertices.end()) return;
 
     //Adds new vertex to the end of list
-    vertices[label] == new Vertex(label);
+    vertices[label] = new Vertex(label);
 }
 
 void Graph::removeVertex(std::string label){
