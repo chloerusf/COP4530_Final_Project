@@ -19,8 +19,6 @@ Graph::~Graph(){
     }
 }
 
-}
-
 void Graph::addVertex(std::string label){
     //Check if label used
     if(vertices.find(label) != vertices.end()) return;
