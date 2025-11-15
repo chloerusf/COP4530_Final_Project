@@ -2,7 +2,6 @@
 Names:
 
 */
-//testing testing 1 2 3 - laray
 #include "Graph.hpp"
 #include <queue>
 #include <limits>
@@ -73,7 +72,36 @@ void Graph::addEdge(std::string label1, std::string label2, unsigned long weight
 }
 
 void Graph::removeEdge(std::string label1, std::string label2){
-
+    //assignment
+    unordered_map<string, Vertex*>::iterator iterator1 = vertices.find(label1);
+    unordered_map<string, Vertex*>::iterator iterator2 = vertices.find(label2);
+    //if one condition not true return
+    if(iterator2 == vertices.end() || iterator1 == vertices.end()) return;
+    
+    //point to object
+    Vertex* vert1 = iterator1->second;
+    Vertex* vert2 = iterator2->second;
+    
+    //remove connection from vertex 1
+    for(size_t i = 0; i < vert1->edges.size(); ){
+        //if edge points to label 2 remove it
+        if (vert1->edges[i].destLabel == label2){
+            vert1->edges.erase(vert1->edges.begin()+ i);
+        } else {
+            i++; //else continue through
+        }
+    }
+    //remove connection from vertex 2
+    for(size_t i = 0; i < vert2->edges.size(); ){
+        //if edge points to label 1 remove it
+        if (vert2->edges[i].destLabel == label1){
+            vert2->edges.erase(vert2->edges.begin()+ i);
+        } else {
+            i++; //else continue through
+        }
+    }
+    
+    
 }
 
 unsigned long Graph:: shortestPath(std::string startLabel, std::string endLabel,
