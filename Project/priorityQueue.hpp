@@ -9,7 +9,7 @@ private:
     // Each element is (distance, label)
     std::vector<std::pair<unsigned long, std::string>> heap;
 
-    // helper functions
+    // Helper functions
     void bubbleUp(int index);
     void bubbleDown(int index);
 

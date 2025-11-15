@@ -24,6 +24,7 @@ std::pair<unsigned long, std::string> PriorityQueue::pop() {
     return result;
 }
 
+// Check if heap is empty
 bool PriorityQueue::isEmpty() const {
     return heap.empty();
 }
