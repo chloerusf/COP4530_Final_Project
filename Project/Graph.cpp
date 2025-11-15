@@ -11,7 +11,15 @@ Names:
 using namespace std;
 
 Graph::Graph(){}
-Graph::~Graph(){}
+
+//Destructor
+Graph::~Graph(){
+    for (auto &pair : vertices) {   
+        delete pair.second;       
+    }
+}
+
+}
 
 void Graph::addVertex(std::string label){
     //Check if label used
