@@ -1,8 +1,7 @@
 /*
-Names:
+Names: Aubrey Kopkau, Chloe Robinson, Laray Lopez, Mark Anjoul
 Purpose: Header file for Graph.cpp
 */
-
 
 #ifndef GRAPH_H
 #define GRAPH_H

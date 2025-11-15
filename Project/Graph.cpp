@@ -1,7 +1,8 @@
 /*
-Names:
-
+Names: Aubrey Kopkau, Chloe Robinson, Laray Lopez, Mark Anjoul
+Purpose: Implements an adjacency list to do Dijkstra's Algorithm
 */
+
 #include "Graph.hpp"
 #include "PriorityQueue.hpp"
 #include <limits>

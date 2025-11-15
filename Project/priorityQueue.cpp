@@ -1,3 +1,9 @@
+/*
+Names: Aubrey Kopkau, Chloe Robinson, Laray Lopez, Mark Anjoul
+Purpose: Implements priority queue using heap
+*/
+
+
 #include "PriorityQueue.hpp"
 #include <algorithm>
 

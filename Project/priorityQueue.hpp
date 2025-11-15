@@ -1,6 +1,11 @@
 #ifndef PRIORITYQUEUE_H
 #define PRIORITYQUEUE_H
 
+/*
+Names: Aubrey Kopkau, Chloe Robinson, Laray Lopez, Mark Anjoul
+Purpose: Header file for priorityQueue.cpp
+*/
+
 #include <vector>
 #include <string>
 
