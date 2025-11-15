@@ -13,7 +13,7 @@ Purpose: Header file for Graph.cpp
 #include <unordered_map>
 #include <algorithm>
 #include <list>
-using namespace std;
+
 
 class Edge {
 public:
