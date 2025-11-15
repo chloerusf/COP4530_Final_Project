@@ -44,7 +44,7 @@ void Graph::removeVertex(std::string label)
         vector<Edge> &edges = p->second->edges;
 
         // Remove edges that point to the vertex being deleted.
-        for (int i = 0; i < edges.size(); i++)
+        for (size_t i = 0; i < edges.size(); i++)
         {
 
             // Only erase edges that point to the vertex being removed
