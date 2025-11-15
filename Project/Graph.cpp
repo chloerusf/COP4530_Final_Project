@@ -3,7 +3,7 @@ Names:
 
 */
 #include "Graph.hpp"
-#include <queue>
+#include "PriorityQueue.hpp"
 #include <limits>
 #include <algorithm>
 
@@ -131,25 +131,23 @@ unsigned long Graph:: shortestPath(std::string startLabel, std::string endLabel,
         dist[startLabel] = 0; // start distance is 0
 
         // setting up priority queue 
-        typedef pair<unsigned long, string> P;
-        struct compare {
-            bool operator()(const P &a, const P &b) { return a.first > b.first; }
-        };
-        priority_queue<P, vector<P>, compare > pq;
-        pq.push(P(0,startLabel)); // start with source
+        PriorityQueue pq;
+        pq.push(0, startLabel);
 
-        // dijkstra loop
-        while (!pq.empty()) {
-            P current = pq.top(); // vertex w/ smallest distance 
-            pq.pop();
-            string u = current.second;
+        // Dijkstra loop
+        while (!pq.isEmpty()) {
+            std::pair<unsigned long, std::string> current = pq.pop(); // vertex with smallest distance
+            unsigned long currentDist = current.first;
+            std::string u = current.second;
 
-            if (visited[u]) continue; // skip if already processed
-            visited[u] = true; // mark as processed
+            // If we've already processed this vertex, skip it
+            if (visited[u]) continue; 
+            visited[u] = true; // Mark as processed
 
-            if (u == endLabel) break; // exit if dest reached
+            // Early exit if destination is reached
+            if (u == endLabel) break; 
 
-            // relaxation step
+            // Relaxation step
             vector<Edge> &edges = vertices[u]->edges; // neighbors of u
             for(size_t i = 0; i < edges.size(); ++i){
                 Edge e = edges[i];
@@ -162,7 +160,7 @@ unsigned long Graph:: shortestPath(std::string startLabel, std::string endLabel,
                     dist[u] + weight < dist[v]) {
                         dist[v] = dist[u] + weight; // update shortest dist
                         prev[v] = u; // track path
-                        pq.push(P(dist[v], v)); // add neighbor to queue
+                        pq.push(dist[v], v); // add neighbor to queue
                 }
             }
         }
