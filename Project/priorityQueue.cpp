@@ -1,4 +1,4 @@
-#include "priorityQueue.hpp"
+#include "PriorityQueue.hpp"
 #include <algorithm>
 
 PriorityQueue::PriorityQueue() {}

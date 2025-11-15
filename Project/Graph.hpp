@@ -14,27 +14,26 @@ Purpose: Header file for Graph.cpp
 #include <algorithm>
 #include <list>
 
-
 class Edge {
 public:
-    string destLabel; // label of the destination vertex
+    std::string destLabel; // label of the destination vertex
     unsigned long weight; // weight of the edge
 
-    Edge(string dest, unsigned long w)
+    Edge(std::string dest, unsigned long w)
         : destLabel(dest), weight(w) {}
 };
 
 class Vertex {
 public:
-    string label; // vertex name
-    vector<Edge> edges; // edges connected to this vertex
+    std::string label; // vertex name
+    std::vector<Edge> edges; // edges connected to this vertex
 
-    Vertex(string l) : label(l) {}
+    Vertex(std::string l) : label(l) {}
 };
 
 class Graph: public GraphBase {
 private: 
-    unordered_map<string, Vertex*> vertices;
+    std::unordered_map<std::string, Vertex*> vertices;
 
     // Prevents accidental copying
     Graph(const Graph&) = delete;
