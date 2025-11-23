@@ -33,11 +33,6 @@ int main(){
         g.addEdge(std::get<0>(e), std::get<1>(e), std::get<2>(e));
     }
 
-    g.shortestPath("A", "E", path);
-    std::cout << "Path: ";
-    for (auto &p : path) std::cout << p << " ";
-    std::cout << "\n";
-
     for (const auto &v : vertices1){
       std::vector<std::string>path;
       g.shortestPath("A",v,path);
