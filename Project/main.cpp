@@ -84,10 +84,10 @@ int test() {
 
 
 int main(){
-  std::cout<<"\nTestcases: \n";
+  std::cout<<"Testcases: \n";
   test();
 
-  std::cout<<"Demo: \n";
+  std::cout<<"\nDemo: \n";
   demo();
 
   return 0;
