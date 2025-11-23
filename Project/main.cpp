@@ -37,10 +37,14 @@ int demo(){
 
     for (const auto &v : vertices1){
       std::vector<std::string>path;
+      unsigned long dist = g.shortestPath("A", v, path);
+
       g.shortestPath("A",v,path);
 
       std::cout<<"Shortest path A to "<< v <<": ";
       for(auto &p:path)std::cout<<p<<" ";
+
+      std::cout<<"| Distance = "<< dist;
       std::cout <<std::endl;
     }
 
