@@ -1,5 +1,0 @@
-Breadth first search
-Weighted search
-Terminated when no more vertices are outside of cloud
-Input graph is undirected and simple
-Bootstraping
