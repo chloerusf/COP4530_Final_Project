@@ -60,10 +60,10 @@ void Graph::removeVertex(std::string label)
     vertices.erase(it);
 }
 
-// this function adds a bi-directional edge to two labels
+// This function adds a bi-directional edge to two labels
 void Graph::addEdge(std::string label1, std::string label2, unsigned long weight)
 {
-    // edge case that makes sure label 1 and label 2 don't loop back to itself
+    // Edge case that makes sure label 1 and label 2 don't loop back to itself
     if (label1 == label2)
         return;
 
@@ -75,60 +75,60 @@ void Graph::addEdge(std::string label1, std::string label2, unsigned long weight
     {
         return;
     }
-    // point to the objects
+    // Point to the objects
     Vertex *vert1 = iterator1->second;
     Vertex *vert2 = iterator2->second;
 
-    // edge case that checks the vertices for duplicate edges
+    // Edge case that checks the vertices for duplicate edges
     for (size_t i = 0; i < vert1->edges.size(); i++)
     {
         if (vert1->edges[i].destLabel == label2)
         {
             return;
-        } // if edge already exists
+        } // If edge already exists
     }
-    // add an edge in both direction (so they both know each other)
+    // Add an edge in both direction (so they both know each other)
     vert1->edges.push_back(Edge(label2, weight));
     vert2->edges.push_back(Edge(label1, weight));
 }
 
 void Graph::removeEdge(std::string label1, std::string label2)
 {
-    // assignment
+    // Assignment
     unordered_map<string, Vertex *>::iterator iterator1 = vertices.find(label1);
     unordered_map<string, Vertex *>::iterator iterator2 = vertices.find(label2);
-    // if one condition not true return
+    // If one condition not true return
     if (iterator2 == vertices.end() || iterator1 == vertices.end())
         return;
 
-    // point to object
+    // Point to object
     Vertex *vert1 = iterator1->second;
     Vertex *vert2 = iterator2->second;
 
-    // remove connection from vertex 1
+    // Remove connection from vertex 1
     for (size_t i = 0; i < vert1->edges.size();)
     {
-        // if edge points to label 2 remove it
+        // If edge points to label 2 remove it
         if (vert1->edges[i].destLabel == label2)
         {
             vert1->edges.erase(vert1->edges.begin() + i);
         }
         else
         {
-            i++; // else continue through
+            i++; // Else continue through
         }
     }
-    // remove connection from vertex 2
+    // Remove connection from vertex 2
     for (size_t i = 0; i < vert2->edges.size();)
     {
-        // if edge points to label 1 remove it
+        // If edge points to label 1 remove it
         if (vert2->edges[i].destLabel == label1)
         {
             vert2->edges.erase(vert2->edges.begin() + i);
         }
         else
         {
-            i++; // else continue through
+            i++; // Else continue through
         }
     }
 }
@@ -137,18 +137,18 @@ unsigned long Graph::shortestPath(std::string startLabel, std::string endLabel,
                                   std::vector<std::string> &path)
 {
 
-    // validation- determine if shortest path between start and end exist
+    // Validation- determine if shortest path between start and end exist
     if (vertices.find(startLabel) == vertices.end() || vertices.find(endLabel) == vertices.end())
         return (unsigned long)(-1);
 
     path.clear();
 
-    // initialization
-    unordered_map<string, unsigned long> dist; // current shortest dist to each vertex
-    unordered_map<string, string> prev;        // previous vertex in shortest path
-    unordered_map<string, bool> visited;       // whether vertex has been processed
+    // Initialization
+    unordered_map<string, unsigned long> dist; // Current shortest dist to each vertex
+    unordered_map<string, string> prev;        // Previous vertex in shortest path
+    unordered_map<string, bool> visited;       // Whether vertex has been processed
 
-    // make distances infinity and visited false
+    // Make distances infinity and visited false
     for (unordered_map<string, Vertex *>::iterator it = vertices.begin(); it != vertices.end(); ++it)
     {
         dist[it->first] = (unsigned long)(-1);
@@ -156,14 +156,14 @@ unsigned long Graph::shortestPath(std::string startLabel, std::string endLabel,
     }
     dist[startLabel] = 0; // start distance is 0
 
-    // setting up priority queue
+    // Setting up priority queue
     PriorityQueue pq;
     pq.push(0, startLabel);
 
     // Dijkstra loop
     while (!pq.isEmpty())
     {
-        std::pair<unsigned long, std::string> current = pq.pop(); // vertex with smallest distance
+        std::pair<unsigned long, std::string> current = pq.pop(); // Vertex with smallest distance
         std::string u = current.second;
 
         // If we've already processed this vertex, skip it
@@ -176,36 +176,36 @@ unsigned long Graph::shortestPath(std::string startLabel, std::string endLabel,
             break;
 
         // Relaxation step
-        vector<Edge> &edges = vertices[u]->edges; // neighbors of u
+        vector<Edge> &edges = vertices[u]->edges; // Neighbors of u
         for (size_t i = 0; i < edges.size(); ++i)
         {
             Edge e = edges[i];
             string v = e.destLabel;
             unsigned long weight = e.weight;
 
-            // relax the edge u -> v
+            // Relax the edge u -> v
             if (!visited[v] &&
                 dist[u] != (unsigned long)(-1) &&
                 dist[u] + weight < dist[v])
             {
-                dist[v] = dist[u] + weight; // update shortest dist
-                prev[v] = u;                // track path
-                pq.push(dist[v], v);        // add neighbor to queue
+                dist[v] = dist[u] + weight; // Update shortest dist
+                prev[v] = u;                // Track path
+                pq.push(dist[v], v);        // Add neighbor to queue
             }
         }
     }
-    // reconstructing the shortest path
+    // Reconstructing the shortest path
     if (dist[endLabel] == (unsigned long)(-1))
-        return (unsigned long)(-1); // no path exists
+        return (unsigned long)(-1); // No path exists
 
     string at = endLabel;
     while (at != startLabel)
-    { // backtrack from end to start
+    { // Backtrack from end to start
         path.push_back(at);
         at = prev[at];
     }
     path.push_back(startLabel);
-    reverse(path.begin(), path.end()); // reverse to get start to end
+    reverse(path.begin(), path.end()); // Reverse to get start to end
 
-    return dist[endLabel]; // return total shortest distance
+    return dist[endLabel]; // Return total shortest distance
 }

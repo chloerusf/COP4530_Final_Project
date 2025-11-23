@@ -15,8 +15,8 @@ Purpose: Header file for Graph.cpp
 
 class Edge {
 public:
-    std::string destLabel; // label of the destination vertex
-    unsigned long weight; // weight of the edge
+    std::string destLabel; // Label of the destination vertex
+    unsigned long weight; // Weight of the edge
 
     Edge(std::string dest, unsigned long w)
         : destLabel(dest), weight(w) {}
@@ -24,8 +24,8 @@ public:
 
 class Vertex {
 public:
-    std::string label; // vertex name
-    std::vector<Edge> edges; // edges connected to this vertex
+    std::string label; // Vertex name
+    std::vector<Edge> edges; // Edges connected to this vertex
 
     Vertex(std::string l) : label(l) {}
 };
