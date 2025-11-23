@@ -38,6 +38,15 @@ int main(){
     for (auto &p : path) std::cout << p << " ";
     std::cout << "\n";
 
+    for (const auto &v : vertices1){
+      std::vector<std::string>path;
+      g.shortestPath("A",v,path);
+
+      std::cout<<"Shortest path A to "<< v <<": ";
+      for(auto &p:path)std::cout<<p<<" ";
+      std::cout <<std::endl;
+    }
+
 
     return 0;
 }
